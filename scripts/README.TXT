@@ -1,0 +1,3 @@
+-. Debugging Tools for Windows (x64) 설치 필요.
+-. 심볼 데이터 원본 필요.
+-. 오류 보고 파일(*.zip) 원본 필요.

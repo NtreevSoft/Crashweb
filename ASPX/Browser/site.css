@@ -1,0 +1,395 @@
+﻿/*
+ * Crashweb
+ * https://github.com/NtreevSoft/Crashweb
+ * 
+ * Released under the MIT License.
+ * 
+ * Copyright (c) 2008 Ntreev Soft co., Ltd.
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated 
+ * documentation files (the "Software"), to deal in the Software without restriction, including without limitation the 
+ * rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit 
+ * persons to whom the Software is furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the 
+ * Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE 
+ * WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR 
+ * COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR 
+ * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */ 
+
+body {
+padding:0px;
+margin:0px;
+font-family:맑은 고딕;
+}
+
+h1 {
+margin:4px;
+padding:8px;
+font-size:1.3em;
+border-bottom:MidnightBlue 1px solid;
+}
+
+h1 a {
+color:Black;
+}
+
+#footer {
+margin:4px;
+border-top:MidnightBlue 1px solid;
+}
+        
+img {
+vertical-align:top;
+border:0px;
+}
+        
+a:link    { text-decoration:none; }
+a:hover   { text-decoration:none; }
+a:active  { text-decoration:none; }
+a:visited { text-decoration:none; }
+
+/* class for common use */
+
+.clear {
+clear:both;
+}
+
+.selected {
+font-weight:bold;
+font-style:italic;
+}
+
+.radius {
+border-top-left-radius:6px;
+border-top-right-radius:6px;
+border-bottom-left-radius:6px;
+border-bottom-right-radius:6px;
+}
+
+.radius4 {
+border-top-left-radius:4px;
+border-top-right-radius:4px;
+border-bottom-left-radius:4px;
+border-bottom-right-radius:4px;
+}
+
+.btnize_Coral {
+border-left:LightSalmon 1px solid;
+border-top:LightSalmon 1px solid;
+border-right:OrangeRed 1px solid;
+border-bottom:OrangeRed 1px solid;
+}
+
+.btnize_gold {
+border-left:Yellow 1px solid;
+border-top:Yellow 1px solid;
+border-right:Goldenrod 1px solid;
+border-bottom:Goldenrod 1px solid;
+}
+
+.btnize_silver {
+border-left:LightGrey 1px solid;
+border-top:LightGrey 1px solid;
+border-right:DarkGray 1px solid;
+border-bottom:DarkGray 1px solid;
+}
+
+.smalltext {
+ font-size:0.7em;
+}
+
+.comment {
+ cursor:pointer;
+}
+
+.highlight {
+ padding:1px;
+ /*background-color:gold;*/
+ font-weight:bold;
+ color:red;
+}
+
+/* menu */
+
+#menu {
+ padding:0px;
+ margin:0px;
+ list-style:none;
+}
+
+#menu li {
+ float:left;
+}
+    
+#menu .menu {
+background-color:#3B5998;
+padding:4px 12px 4px 12px;
+border-left:  1px solid #EDEFF4;
+border-top:   1px solid #EDEFF4;
+border-right: 1px solid #2B3B58;
+border-bottom:1px solid #2B3B58;
+}
+
+#menu .lastmenu {
+border-bottom-right-radius:6px;
+}
+
+#menu .menu img {
+vertical-align:middle;
+}
+
+#menu .menu a {
+color:white;
+font-size:0.8em;
+}
+
+
+/* header & content */
+
+#header {
+ z-index:10002;
+}
+
+#content {
+ z-index:10001;
+}
+
+
+/* report */
+
+#report {
+padding:15px;
+font-size:0.8em;
+}
+        
+#report table {
+border-right:solid 1px white;
+border-bottom:solid 1px white;
+}
+        
+#report th {
+text-align:center;
+/*background-color:#6080C0;*/
+background-color:#627AAD;
+color:white;
+}
+
+#report .normal {
+}
+        
+#report .recent {
+background-color:khaki;
+}
+        
+#report .disabled {
+background-color:silver;
+}
+
+#report .grayed {
+color:silver;
+}
+        
+#report .grayed a {
+color:silver;
+}
+        
+#report .grayed .opacity {
+opacity:0.4;
+}
+        
+#report .FlipA {
+background-color:white;
+}
+        
+#report .FlipB {
+background-color:white;
+}
+
+#report .seps {
+background-color:khaki;
+}
+        
+#report .bar {
+background-color:Coral;
+padding:2px;
+font-size:0.7em;
+color:white;
+}
+        
+#report th, td {
+border-top:solid 1px white;
+border-left:solid 1px white;
+padding:5px;
+white-space:nowrap;
+}
+
+#report .reported {
+padding:3px;
+background-color:Coral;
+color:white;
+font-size:0.8em;
+}
+
+#report .reissued {
+padding:3px;
+background-color:gold;
+color:white;
+font-size:0.8em;
+}
+
+#report .resolved {
+padding:3px;
+background-color:silver;
+color:white;
+font-size:0.8em;
+}
+
+#report .progress {
+background-color:Coral;
+color:white;
+font-size:0.8em;
+padding:3px;
+}
+
+#pageNavigator {
+margin-bottom:15px;
+font-size:1em;
+}
+
+#pageNavigator img {
+vertical-align:middle;
+}
+
+#pageNavigator #pageNo {
+text-align:right;
+}
+
+input#fromdate {
+ width:80px;
+ text-align:right;
+}
+
+input#todate {
+ width:80px;
+ text-align:right;
+}
+
+#graphController img {
+vertical-align:middle;
+}
+
+#project {
+width:160px;
+height:21px;
+}
+
+#project #prj_select {
+color:White;
+}
+
+#project #prj_select div.fixed {
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+}
+
+#project #prj_option {
+padding:6px;
+border:gray 1px solid;
+border-left:gray 0px solid;
+background-color:#3B5998;
+display:none;
+position:fixed
+}
+
+
+/* tooltip */
+
+#tooltip {
+display:none;
+position:absolute;
+color:white;
+background-color:black;
+padding:15px;
+}
+
+#comment_form {
+ margin-top:10px;
+ padding:5px;
+ border:white 1px solid;
+ width:320px;
+}
+
+#comment_form input#author {
+ width:25%;
+}
+
+#comment_form input#comment {
+ width:80%;
+}
+
+
+/* comment box (preview) */
+
+#comment_box_close {
+    text-align:right;
+}
+
+#comment_box {
+ display:none;
+ position:absolute;
+ padding:0px 8px 12px 8px;
+ width:400px;
+ height:300px;
+ border-left:gray 1px solid;
+ border-top:gray 1px solid;
+ border-right:darkgray 1px solid;
+ border-bottom:darkgray 1px solid;
+ font-size:0.8em;
+ background-color:White;
+}
+
+#comment_box #comments {
+ width:100%;
+ height:256px;
+ margin-bottom:8px;
+ overflow:auto;
+}
+
+#comment_box #comments table {
+    width:100%;
+}
+
+#comment_box #comments th {
+    padding:3px;
+    background-color:lightgrey;
+    width:1px;
+    word-break:nowrap;
+}
+
+#comment_box #comments td {
+    padding:3px;
+    word-break:break-all;
+    white-space:normal;
+}
+
+#comment_box input#author {
+    width:128px;
+}
+
+#comment_box input#comment {
+    width:256px;
+}
+
+
+/* footer */
+
+#footer span {
+margin:12px 0px 36px 12px;
+font-size:0.8em;
+display:block;
+}
