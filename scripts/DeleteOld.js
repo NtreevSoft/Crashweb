@@ -23,6 +23,19 @@
 var fso = new ActiveXObject("Scripting.FileSystemObject");
 var sho = new ActiveXObject("WScript.Shell");
 
+function alert(s) { WScript.Echo(s); }
+function errorlog(s) {
+
+  //  make sure log path exists
+  sho.Run("cmd /c mkdir log", 0, true);
+
+  var forAppending = 8;
+  var now = new Date();
+  var f = fso.OpenTextFile(sho.CurrentDirectory + '\\log\\DeleteOld.log', forAppending, true);
+  f.WriteLine(now.toLocaleString() + ': ' + s);
+  f.Close();
+}
+
 function Folder2Array(arr, pathName)
 {
     var path = fso.GetFolder(pathName);
@@ -56,7 +69,7 @@ function IsSameDate(d1,d2)
 
 function DeleteIt(file)
 {
-    //WScript.Echo(file.Name + " : " + file.DateLastModified);
+    //alert(file.Name + " : " + file.DateLastModified);
     fso.DeleteFile(file, true);
 }
 
@@ -82,16 +95,45 @@ function DeleteOld(pathName)
         }
     }
 
-    //WScript.Echo(selected);
+    //alert(selected);
+}
+
+function trim(s)
+{
+  return s.replace(/^\s+/,'').replace(/\s+$/,'');
+}
+
+function GetDeletePathList()
+{
+  var ret = [];
+
+  var forReading = 1;
+  var f = fso.OpenTextFile(sho.CurrentDirectory + '\\DeleteOld.config', forReading);
+  while (!f.AtEndOfStream) {
+    var line = trim(f.ReadLine());
+    if (line.indexOf(';') == 0 || !line.length)
+      continue;
+    ret.push(line);
+  }
+
+  return ret;
 }
 
 function main()
 {
-    DeleteOld(sho.CurrentDirectory + "\\log");
-    //DeleteOld(sho.CurrentDirectory + "\\symbols");
-    DeleteOld(sho.CurrentDirectory + "\\reports");
-    DeleteOld("C:\\yourpath\\@sym\\yourclient.exe\\");
-    DeleteOld("C:\\yourpath\\@sym\\yourclient.pdb\\");
+  var pathList = GetDeletePathList();
+  for (idx in pathList)
+  {
+    var path = pathList[idx];
+    try
+    {
+      DeleteOld(path);
+    }
+    catch(e)
+    {
+      errorlog('ERROR: failed to delete ' + path + ' (reason: ' + e.message + ')');
+    }
+  }
 }
 
 main();

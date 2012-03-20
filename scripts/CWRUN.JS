@@ -20,41 +20,74 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */ 
 
-// ---------------------------------------------------------------------------------------------------------------------
-// local settings
+var fso = new ActiveXObject("Scripting.FileSystemObject");
+var sho = new ActiveXObject("WScript.Shell");
 
-var reportPath = "\"C:\\yourpath\\crashweb\\reported files\" ";
-var symServer  = "\"C:\\yourpath\\@sym\" ";
-var connString = "\"server=Server,Port;database=CRASHWEB_DB;Uid=CrashwebUser;Password=****;\" ";
+// helper functions ---------------------------------------------------------------------------------------------------------------------
+function trim(s)
+{
+  return s.replace(/^\s+/,'').replace(/\s+$/,'');
+}
+
+function ReadConfig()
+{
+  var ret = {};
+
+  var forReading = 1;
+  var f = fso.OpenTextFile(sho.CurrentDirectory + '\\CWRUN.config', forReading);
+  while (!f.AtEndOfStream) {
+    var line = trim(f.ReadLine());
+    if (line.indexOf(';') == 0 || !line.length)
+      continue;
+
+    var pos = line.indexOf('=');
+    if (pos == -1)
+      continue;
+
+    var key = trim(line.substr(0,pos));
+    var val = trim(line.substr(pos+1));
+
+    ret[key] = val;
+  }
+
+  return ret;
+}
 
 // ---------------------------------------------------------------------------------------------------------------------
 function main()
 {
-    var message = "";
-
-    var fso = new ActiveXObject("Scripting.FileSystemObject");
-    var sho = new ActiveXObject("WScript.Shell");
-
-    sho.Run("cmd /c mkdir log", 0, true);
-
-    try
+  var configs = ReadConfig();
+  for (key in configs)
+  {
+    switch (key)
     {
-        sho.Run("cmd /c echo %DATE% %TIME% START... >> log\\CrashGatherer.%DATE%.log", 0, true);
-//        sho.Run("cmd /c ..\\bin\\CrashGatherer.exe " + reportPath + symServer + connString + " >> log\\CrashGatherer.%DATE%.log", 0, true);
-        sho.Run("cmd /c CrashGatherer.exe " + reportPath + symServer + connString + " >> log\\CrashGatherer.%DATE%.log", 0, true);
-        sho.Run("cmd /c echo %DATE% %TIME% OK! >> log\\CrashGatherer.%DATE%.log", 0, true);
+    case 'report_path': reportPath = "\"" + configs[key] + "\" "; break;
+    case 'symbol_server': symServer = "\"" + configs[key] + "\" "; break;
+    case 'connection_string': connString = "\"" + configs[key] + "\" "; break;
     }
-    catch(e)
-    {
-        return "ERROR: Cannot execute CrashGatherer.exe.\r\n\r\n" + e.message;
-    }
+  }
 
-    return message;
+  var message = "";
+
+  sho.Run("cmd /c mkdir log", 0, true);
+
+  try
+  {
+    sho.Run("cmd /c echo %DATE% %TIME% START... >> log\\CrashGatherer.%DATE%.log", 0, true);
+    sho.Run("cmd /c echo Executing: CrashGatherer.exe " + reportPath + symServer + connString + " >> log\\CrashGatherer.%DATE%.log", 0, true);
+    sho.Run("cmd /c CrashGatherer.exe " + reportPath + symServer + connString + " >> log\\CrashGatherer.%DATE%.log", 0, true);
+    sho.Run("cmd /c echo %DATE% %TIME% OK! >> log\\CrashGatherer.%DATE%.log", 0, true);
+  }
+  catch(e)
+  {
+    return "ERROR: Cannot execute CrashGatherer.exe.\r\n\r\n" + e.message;
+  }
+
+  return message;
 }
-
 
 var m = main();
 if (m.length > 0)
 {
-    WScript.Echo(m);
+  WScript.Echo(m);
 }
