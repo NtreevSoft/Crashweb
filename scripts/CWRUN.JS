@@ -56,14 +56,16 @@ function ReadConfig()
 // ---------------------------------------------------------------------------------------------------------------------
 function main()
 {
+  var projectUid = "1 ";
   var configs = ReadConfig();
   for (key in configs)
   {
     switch (key)
     {
-    case 'report_path': reportPath = "\"" + configs[key] + "\" "; break;
-    case 'symbol_server': symServer = "\"" + configs[key] + "\" "; break;
-    case 'connection_string': connString = "\"" + configs[key] + "\" "; break;
+    case 'report_path': reportPath = " \"" + configs[key] + "\""; break;
+    case 'symbol_server': symServer = " \"" + configs[key] + "\""; break;
+    case 'connection_string': connString = "\"" + configs[key] + "\""; break;
+    case 'project_uid': projectUid = " \"" + configs[key] + "\""; break;
     }
   }
 
@@ -75,7 +77,7 @@ function main()
   {
     sho.Run("cmd /c echo %DATE% %TIME% START... >> log\\CrashGatherer.%DATE%.log", 0, true);
     sho.Run("cmd /c echo Executing: CrashGatherer.exe " + reportPath + symServer + connString + " >> log\\CrashGatherer.%DATE%.log", 0, true);
-    sho.Run("cmd /c CrashGatherer.exe " + reportPath + symServer + connString + " >> log\\CrashGatherer.%DATE%.log", 0, true);
+    sho.Run("cmd /c CrashGatherer.exe" + reportPath + symServer + connString + projectUid + " >> log\\CrashGatherer.%DATE%.log", 0, true);
     sho.Run("cmd /c echo %DATE% %TIME% OK! >> log\\CrashGatherer.%DATE%.log", 0, true);
   }
   catch(e)

@@ -35,7 +35,8 @@ OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
     <script type="text/javascript" src="jquery.history.js?20110526001"></script>
     <script type="text/javascript" src="jquery-ui-1.8.13.custom.min.js"></script>
     <script type="text/javascript" src="jquery.ui.datepicker-ko.js?20110526001"></script>
-    <script type="text/javascript" src="site.js?20110608001"></script>
+    <script type="text/javascript" src="site.config?20120331001"></script>
+    <script type="text/javascript" src="site.js?20120331001"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript">
       google.load("visualization", "1", {packages:["corechart"]});

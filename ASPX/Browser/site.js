@@ -20,21 +20,19 @@
  * OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */ 
 
-// local config
-
 function create_source_link(fileline, filenameOnly) {
 
-    return "http://YOUR_VERSION_SERVER/search/" + filenameOnly;
+    return g_repo_search_pattern.replace('<keyword>', filenameOnly);
 }
 
 function create_issue_tracker_link() {
 
-    return "http://YOUR_ISSUE_TRACKER/new/";
+    return g_issue_tracker_info.uri;
 }
 
 function get_issue_tracker_name() {
 
-    return "MANTIS";
+    return g_issue_tracker_info.name;
 }
 
 // global variables
