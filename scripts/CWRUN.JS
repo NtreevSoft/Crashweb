@@ -64,7 +64,7 @@ function main()
     {
     case 'report_path': reportPath = " \"" + configs[key] + "\""; break;
     case 'symbol_server': symServer = " \"" + configs[key] + "\""; break;
-    case 'connection_string': connString = "\"" + configs[key] + "\""; break;
+    case 'connection_string': connString = " \"" + configs[key] + "\""; break;
     case 'project_uid': projectUid = " \"" + configs[key] + "\""; break;
     }
   }
